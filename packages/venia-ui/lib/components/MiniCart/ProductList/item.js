@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { string, number, shape, func, arrayOf } from 'prop-types';
 import { Trash2 as DeleteIcon } from 'react-feather';
 
 import { Price } from '@magento/peregrine';
 import { useItem } from '@magento/peregrine/lib/talons/MiniCart/useItem';
+import { Link } from '@magento/venia-drivers';
 
 import ProductOptions from '../../LegacyMiniCart/productOptions';
 import Image from '../../Image';
@@ -44,13 +46,17 @@ const Item = props => {
 
     return (
         <div className={rootClass}>
-            <Image
-                alt={product.name}
-                classes={{ root: classes.thumbnail }}
-                width={100}
-                resource={product.thumbnail.url}
-            />
-            <span className={classes.name}>{product.name}</span>
+            <Link to={product.uri}>
+                <Image
+                    alt={product.name}
+                    classes={{ root: classes.thumbnail }}
+                    width={100}
+                    resource={product.thumbnail.url}
+                />
+            </Link>
+            <Link to={product.uri}>
+             <span className={classes.name}>{product.name}</span>
+            </Link>
             {deleteButton}
             <ProductOptions
                 options={configurable_options}

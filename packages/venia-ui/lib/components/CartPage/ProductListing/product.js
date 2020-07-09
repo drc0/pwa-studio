@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { AlertCircle as AlertCircleIcon } from 'react-feather';
 import { useProduct } from '@magento/peregrine/lib/talons/CartPage/ProductListing/useProduct';
 import { Price, useToasts } from '@magento/peregrine';
+import { Link } from '@magento/venia-drivers';
 
 import { mergeClasses } from '../../../classify';
 import Kebab from '../../LegacyMiniCart/kebab';
@@ -54,7 +55,7 @@ const Product = props => {
         }
     }, [addToast, errorMessage]);
 
-    const { currency, image, name, options, quantity, unitPrice } = product;
+    const { currency, image, name, options, quantity, unitPrice, uri: productUri } = product;
 
     const classes = mergeClasses(defaultClasses, props.classes);
 
@@ -69,14 +70,18 @@ const Product = props => {
 
     return (
         <li className={classes.root}>
-            <Image
-                alt={name}
-                classes={{ image: classes.image, root: classes.imageContainer }}
-                width={IMAGE_SIZE}
-                resource={image}
-            />
+            <Link to={productUri}>
+                <Image
+                    alt={name}
+                    classes={{ image: classes.image, root: classes.imageContainer }}
+                    width={IMAGE_SIZE}
+                    resource={image}
+                />
+            </Link>
             <div className={classes.details}>
-                <span className={classes.name}>{name}</span>
+                <Link to={productUri}>
+                    <span className={classes.name}>{name}</span>
+                </Link>
                 <ProductOptions
                     options={options}
                     classes={{

@@ -50,6 +50,9 @@ export const useMiniCart = props => {
 
     const productList = useMemo(() => {
         if (!miniCartLoading && miniCartData) {
+            miniCartData.cart.items.map(item => {
+                item.product.uri = `/${item.product.url_key}${miniCartData.storeConfig.product_url_suffix}`
+            })
             return miniCartData.cart.items;
         }
     }, [miniCartData, miniCartLoading]);

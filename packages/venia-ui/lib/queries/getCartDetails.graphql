@@ -1,4 +1,8 @@
 query getCartDetails($cartId: String!) {
+    storeConfig {
+        id
+        product_url_suffix
+    }
     cart(cart_id: $cartId) @connection(key: "Cart") {
         id
         items {

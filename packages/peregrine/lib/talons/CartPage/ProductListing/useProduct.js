@@ -134,8 +134,8 @@ const flattenProduct = item => {
     const { price } = prices;
     const { value: unitPrice, currency } = price;
 
-    const { name, small_image } = product;
+    const { name, small_image, uri } = product;
     const { url: image } = small_image;
 
-    return { currency, image, name, options, quantity, unitPrice };
+    return { currency, image, name, options, quantity, unitPrice, uri };
 };

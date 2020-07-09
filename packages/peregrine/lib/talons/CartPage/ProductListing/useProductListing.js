@@ -34,6 +34,10 @@ export const useProductListing = props => {
 
     let items = [];
     if (called && !error && !loading) {
+        data.cart.items.map(item => {
+            item.product.uri = `/${item.product.url_key}${data.storeConfig.product_url_suffix}`
+        })
+
         items = data.cart.items;
     }
 
